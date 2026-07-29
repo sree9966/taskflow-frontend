@@ -100,19 +100,7 @@ function Dashboard() {
                         </p>
                     </div>
                     <div className="flex gap-3">
-                        <button
-                            className="btn-secondary"
-                            onClick={async () => {
-                                localStorage.removeItem('taskflow_seeded')
-                                setLoading(true)
-                                await seedSampleData()
-                                const res = await API.get('/projects')
-                                setProjects(res.data)
-                                setLoading(false)
-                            }}
-                        >
-                            ✨ Sample Data
-                        </button>
+                       
                         <button
                             className="btn-primary"
                             onClick={() => setShowForm(!showForm)}
