@@ -59,7 +59,7 @@ function Login() {
                                 className="input-field"
                                 type="email"
                                 name="email"
-                                placeholder="ramya@example.com"
+                                placeholder="Enter email"
                                 value={form.email}
                                 onChange={handleChange}
                                 required

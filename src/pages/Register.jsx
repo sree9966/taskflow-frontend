@@ -59,7 +59,7 @@ function Register() {
                                 className="input-field"
                                 type="text"
                                 name="name"
-                                placeholder="Beere Ramyasree"
+                                placeholder="Enter Name"
                                 value={form.name}
                                 onChange={handleChange}
                                 required
@@ -74,7 +74,7 @@ function Register() {
                                 className="input-field"
                                 type="email"
                                 name="email"
-                                placeholder="ramya@example.com"
+                                placeholder="Enter email"
                                 value={form.email}
                                 onChange={handleChange}
                                 required
