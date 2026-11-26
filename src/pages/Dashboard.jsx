@@ -12,6 +12,20 @@ const PROJECT_GRADIENTS = [
     'from-violet-500 to-purple-700',
 ]
 
+const fetchProjects = async () => {
+    const projects = []
+    let nextUrl = '/projects'
+
+    while (nextUrl) {
+        const res = await API.get(nextUrl)
+        const data = res.data
+        projects.push(...(Array.isArray(data) ? data : data.results))
+        nextUrl = Array.isArray(data) ? null : data.next
+    }
+
+    return projects
+}
+
 function Dashboard() {
     const [projects, setProjects] = useState([])
     const [loading, setLoading] = useState(true)
@@ -26,14 +40,13 @@ function Dashboard() {
 
     const initDashboard = async () => {
         try {
-            const res = await API.get('/projects')
-            if (res.data.length === 0) {
+            const loadedProjects = await fetchProjects()
+            if (loadedProjects.length === 0) {
                 setSeeding(true)
                 await seedSampleData()
-                const seededRes = await API.get('/projects')
-                setProjects(seededRes.data)
+                setProjects(await fetchProjects())
             } else {
-                setProjects(res.data)
+                setProjects(loadedProjects)
             }
         } catch (err) {
             setError('Failed to load projects')
